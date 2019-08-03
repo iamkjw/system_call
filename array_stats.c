@@ -42,7 +42,7 @@ asmlinkage long sys_array_stats(struct array_stats *stats, long data[], long siz
   printk("-----------------FINAL--------------------\n");
   printk("local = %ld \n min = %ld \n sum = %ld\n", local, min, sum);
   //inserting local results into user pointer
-  if (copy_to_user(stats, &results, sizeof(struct array_stats){
+  if (copy_to_user(stats, &results, sizeof(struct array_stats))){
     printk("copy_to_user failed \n");
     return -EFAULT;
   }
