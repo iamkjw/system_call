@@ -12,9 +12,8 @@ asmlinkage long sys_process_ancestors(struct process_info info_array[], long siz
 	struct process_info info;
 	int i;
 	int j;
-	struct list_head *list_head_child;
+	struct list_head *head;
 	int num_child = 0;
-	struct list_head *list_head_sib;
 	int num_sib = 0;
 	struct task_struct* cur_task = current;
 
@@ -45,13 +44,13 @@ asmlinkage long sys_process_ancestors(struct process_info info_array[], long siz
 
 
 			//number of children
-			list_for_each(list_head_child, &(cur_task->children)){
+			list_for_each(head, &(cur_task->children)){
 				num_child ++;
 			}
 			info.num_children = num_child;
 
 			//number of sibling
-			list_for_each(list_head_sib, &(cur_task->sibling)){
+			list_for_each(head, &(cur_task->sibling)){
 				num_sib ++;
 			}
 			info.num_siblings = num_sib - 1;
