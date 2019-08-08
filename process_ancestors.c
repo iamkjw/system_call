@@ -16,7 +16,7 @@ asmlinkage long sys_process_ancestors(struct process_info info_array[], long siz
 	int num_child = 0;
 	struct list_head *list_head_sib;
 	int num_sib = 0;
-	struct task_struct cur_task = current;
+	struct task_struct* cur_task = current;
 
 	if (size <= 0){
 	    printk("size <= 0\n");
